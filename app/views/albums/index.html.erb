@@ -1,0 +1,57 @@
+<p id="notice">
+	<%= notice %>
+</p>
+
+<h1>Welcome to My Album</h1>
+<%if current_user%>
+
+<table>
+	<thead>
+		<tr>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<% @images.each do |image| %>
+			<%if image%>
+			<td><a href="<%= album_path(image.album.id) %>"> <%= image_tag image.avatar.url(:small)  %> </a>
+			<br />
+			<%= image.album.album_name%>
+			<br>
+			<%= link_to 'Edit', edit_album_path(image.album.id) %>
+			<%= link_to 'Destroy', album_path(image.album.id), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+
+			<%end%>
+			<% end %>
+		</tr>
+	</tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Album', new_album_path %>
+<%else%>
+<table>
+	<thead>
+		<tr>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<% @images.each do |image| %>
+			<%if image%>
+			<td><a href="<%= welcome_page_path(image.album.id) %>"> <%= image_tag image.avatar.url(:small)  %> </a></td>
+			<td> <%= image.album.album_name%> </td>
+			<%end%>
+			<% end %>
+		</tr>
+	</tbody>
+</table>
+
+<br>
+<%end%>
+

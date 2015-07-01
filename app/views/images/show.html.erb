@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <%= link_to @album.album_name, @album %>
+  /
+  <%= @image.avatar_file_name %>
+</p>
+<%= image_tag @image.avatar.url(:small) %>
+<%= link_to 'Edit', edit_album_image_path(@album, @image) %>
+<%= link_to 'Back', album_path(@album.id) %>
